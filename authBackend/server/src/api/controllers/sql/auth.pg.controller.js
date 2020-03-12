@@ -9,10 +9,15 @@ const controller = "[auth.pg.controller]";
 const authService = require("../../services/sql/auth.service");
 
 exports.addAdmin = async (req, res, next) => {
+  console.log("register==============", req.body);
   const methodName = "[register]";
   try {
-    await authService.createUser(req.body);
-    console.log("register==============", req.body);
+    let findUser = await authService.findUserByEmail(req.body)
+    if(!findUser) {
+      return await authService.createUser(req.body);
+    }else {
+      return false
+    }
   } catch (error) {
     logger.error(controller, methodName, error);
     return "Not Done";
@@ -44,3 +49,4 @@ exports.login = async (req, res, next) => {
     return "Not Done";
   }
 };
+

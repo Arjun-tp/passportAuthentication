@@ -1,6 +1,9 @@
 const JWT = require("passport-jwt");
+const JwtStrategy = require('passport-jwt').Strategy
 // const Keys = require("../config/keys");
-const UserModel = require("../api/models/sql/user.model");
+// const UserModel = require("../api/models/sql/user.model");
+const mysqldb = require("../config/sequelize");
+const User = mysqldb.User;
 
 let { Strategy, ExtractJwt } = JWT;
 let options = {
@@ -13,15 +16,18 @@ let options = {
 module.exports = function jwtMiddleware(passport) {
   passport.use(
     new Strategy(options, async function(req, payload, done) {
-      let user = await UserModel.default.findOne({
-        _id: payload._id
-      });
-      if (user) {
+        console.log('payloads', payload)
+      /*let user = await User.findOne({
+        uuid: 'aaa'
+      });*/
+      /*if (user) {
         req.user = payload;
         done(null, payload);
       } else {
         done(null, false);
+      }*/
+    }), (token, done) => {
+        return done(null, token)
       }
-    })
   );
 }

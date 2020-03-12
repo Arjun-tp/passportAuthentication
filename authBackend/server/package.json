@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "dotenv-safe": "^4.0.4",
         "express-acl": "^2.0.3",

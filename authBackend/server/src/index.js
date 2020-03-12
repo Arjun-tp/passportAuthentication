@@ -23,7 +23,7 @@ function startServer() {
 if (mysql.enabled === "true") {
   sqldb.sequelize
     .sync({
-      force: true
+      force: false
     })
     .then(startServer)
     .catch(err => {
