@@ -1,10 +1,5 @@
 module.exports = {
 
-    kycStatus: ['initiated', 'submitted', 'pending', 'approved', 'rejected', 'paymentAccepted', 'paymentRejected'],
-    role: ['superAdmin', 'Relationship Manager','Operation Manager' ,'chatSupport', 'admin'],
-    investmentMethod: ['creditCard', 'wireTransfer', 'btc', 'eth'],
-    companyStage: ['preSeed', 'seed', 'Prefer not to Mention'],
-    documents: ['passport', 'panCard'],
     gender: ['Male', 'Female', 'notToMention'],
     tokenType: 'Bearer',
     errorMessage: {
@@ -33,24 +28,4 @@ module.exports = {
         NO_SUBMISSION_FOUND: "NO_SUBMISSION_FOUND"
 
     },
-    emailType: {
-        emailVerificationMail: 'sendEmailVerificationMail',
-        forgotPasswordMail: 'sendForgotPassword',
-        sendPasswordResetCompleted: 'sendPasswordResetCompleted',
-        sendDeleteAccount: 'sendDeleteAccount',
-        sendEmailActivated: 'sendEmailActivated',
-        sendPasswordSetForAdmin: 'sendPasswordSetForAdmin',
-        sendMailForRelationshipManager: 'sendMailForRelationshipManager',
-    },
-    version: {
-        v1: 'v1.0.0',
-        v2: 'v2.0.0',
-    },
-    roleIds: {
-        superAdmin: 1,
-        admin: 2,
-        relationshipManager: 3,
-        chatSupport: 4
-    },
-    signedUrlExpireSeconds: 5 * 60 * 1000 // 5 minute
 };
