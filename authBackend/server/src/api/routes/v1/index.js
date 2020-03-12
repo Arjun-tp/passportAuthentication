@@ -9,10 +9,8 @@ const {
 
 if (mysql.enabled === 'true') {
     const authRoutes = require('./sql/auth.route');
-    const administratorRoutes = require('./sql/adminstrator.route');
 
     router.use('/auth', authRoutes);
-    router.use('/administrator', administratorRoutes);
 }
 
 module.exports = router;

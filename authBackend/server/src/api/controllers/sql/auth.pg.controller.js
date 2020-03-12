@@ -9,17 +9,11 @@ const controller = "[auth.pg.controller]";
 const authService = require("../../services/sql/auth.service");
 
 
-exports.register = async (req, res, next) => {
+exports.addAdmin = async (req, res, next) => {
   const methodName = "[register]";
-  let user;
   try {
-
-    user = await authService.createUser(reqData);
-    if (user) {
-
-      return 'Done'
-    }
-    return 'Not Done'
+    await authService.createUser(req.body)
+    console.log('register==============', req.body)
   } catch (error) {
     logger.error(controller, methodName, error);
     return 'Not Done'

@@ -54,9 +54,16 @@ exports.fetchUserByActivationCodeStashed = async (obj) => {
   }
 };
 
-exports.createUser = async obj => {
+exports.createUser = async query => {
   const methodName = "[createUser]";
   try {
+
+    const queryParams = {
+      where: {
+        email: query.email
+      }
+    };
+    let emailCheck = await User.findOne(queryParams);
 
   } catch (error) {
     logger.error(model, methodName, error);
