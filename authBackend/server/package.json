@@ -1,11 +1,53 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "authpass",
+    "version": "1.0.0",
+    "description": "Auth pass",
+    "author": "arjun",
+    "main": "src/index.js",
+    "private": true,
+    "engines": {
+        "node": ">=7.6",
+        "yarn": "*"
+    },
+    "scripts": {
+        "start": "cross-env NODE_ENV=development pm2 delete all",
+        "dev": "nodemon ./src/index.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv-safe": "^4.0.4",
+        "express-acl": "^2.0.3",
+        "express-rate-limit": "^3.3.2",
+        "express-validation": "^1.0.2",
+        "http-status": "^1.4.1",
+        "http-status-codes": "^1.4.0",
+        "method-override": "^3.0.0",
+        "morgan": "^1.9.1",
+        "mysql": "^2.17.1",
+        "mysql2": "^1.7.0",
+        "n": "^2.1.12",
+        "nyc": "^13.0.1",
+        "pg": "^7.4.1",
+        "pg-native": "^2.2.0",
+        "pm2": "^2.4.6",
+        "randomstring": "^1.1.5",
+        "request": "^2.83.0",
+        "sequelize": "^4.37.6",
+        "sequelize-transforms": "^2.0.0",
+        "uuid": "^3.1.0",
+        "winston": "^2.4.4",
+        "winston-daily-rotate-file": "^3.2.1"
+    },
+    "devDependencies": {
+        "express": "^4.17.1",
+        "express-session": "1.15.3",
+        "express-validator": "3.1.2",
+        "jsonwebtoken": "7.4.1",
+        "lodash": "^4.17.15",
+        "logger": "0.0.1",
+        "moment": "2.17.0",
+        "path": "0.12.7"
+    },
+    "license": "ISC"
 }

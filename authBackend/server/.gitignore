@@ -1,0 +1,36 @@
+# Environment variables
+.env
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dist
+dist
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+node_modules
+node_modules/
+
+package-lock.json
+
+.node-*
+
+.nyc_output
+
+.vscode
+
+.idea
+
+.env.beta
