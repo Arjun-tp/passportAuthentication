@@ -2,21 +2,20 @@ const httpStatus = require("http-status");
 // const bcrypt = require("bcryptjs");
 // const salt = bcrypt.genSaltSync(10);
 const logger = require("../../utils/logger");
-
+const jwt = require("jsonwebtoken");
 
 const controller = "[auth.pg.controller]";
 /* Model included */
 const authService = require("../../services/sql/auth.service");
 
-
 exports.addAdmin = async (req, res, next) => {
   const methodName = "[register]";
   try {
-    await authService.createUser(req.body)
-    console.log('register==============', req.body)
+    await authService.createUser(req.body);
+    console.log("register==============", req.body);
   } catch (error) {
     logger.error(controller, methodName, error);
-    return 'Not Done'
+    return "Not Done";
   }
 };
 
@@ -27,12 +26,21 @@ exports.addAdmin = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   const methodName = "[login]";
   try {
-    const reqData = req.body;
+    const reqData = {
+      email: req.body.email,
+      password: req.body.password
+    };
 
-    return 'Done'
+    jwt.sign(reqData, "secret@123", { expiresIn: "7d" }, (error, token) => {
+      if (error) {
+        return error;
+      } else {
+        return res.status(200).json({ token });
+      }
+    });
+    return "Done";
   } catch (error) {
     logger.error(controller, methodName, error);
-    return 'Not Done'
+    return "Not Done";
   }
 };
-
