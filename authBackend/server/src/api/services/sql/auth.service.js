@@ -44,11 +44,8 @@ exports.findUserByEmail = async query => {
     let emailCheck =  await User.findOne(queryParams);
 
     if (emailCheck){
-      // console.log('iiiiiiiiiiiiiiiiiiiiiii', emailCheck)
       return emailCheck.dataValues
     }else {
-      console.log('tttttttttttttttttttt')
-
       return false
     }
   } catch (error) {

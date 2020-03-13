@@ -54,7 +54,7 @@ exports.getAllUsers = async (req, res, next) => {
     logger.error(controller, methodName, error);
     return error;
   }
-}
+};
 
 exports.addUser = async (req, res, next) => { //add dummy user to db
   const methodName = "[addUser]";
@@ -67,7 +67,7 @@ exports.addUser = async (req, res, next) => { //add dummy user to db
     logger.error(controller, methodName, error);
     return error;
   }
-}
+};
 
 exports.login = async (req, res, next) => {
   const methodName = "[login]";
@@ -91,7 +91,7 @@ exports.login = async (req, res, next) => {
         }
       });
     } else {
-      return false
+      return res.json(false)
     }
   } catch (error) {
     logger.error(controller, methodName, error);

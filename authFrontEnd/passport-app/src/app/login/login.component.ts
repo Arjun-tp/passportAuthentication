@@ -33,21 +33,20 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
     const query = {
       email: this.loginForm.value['email'],
       password: this.loginForm.value['password']
-    }
+    };
     this.loading = true;
     this.authService.login(query)
       .subscribe(
         (data: any) => {
           if (data && data.token) {
             this.toastr.success('Login Successful!');
-            localStorage.setItem('token', data.token) //add token to localstorage
+            localStorage.setItem('token', data.token);  // add token to localstorage
             this.router.navigate(['/home']);
           } else {
             this.toastr.error('Login Unsuccessful!');

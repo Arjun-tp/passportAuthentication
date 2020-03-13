@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { environment }  from '../../environments/environment'
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { environment } from '../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +8,9 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  loginUrl = environment.apiURL + "/auth/login";
-  getUsersUrl = environment.apiURL + "/auth/getAllUsers";
+  loginUrl = environment.apiURL + '/auth/login';
+  getUsersUrl = environment.apiURL + '/auth/getAllUsers';
+  addUserUrl = environment.apiURL + '/auth/addUser';
 
 
 
@@ -26,4 +26,7 @@ export class AuthService {
     return this.http.post(this.loginUrl, body);
   }
 
+  addUser(body) {
+    return this.http.post(this.addUserUrl, body);
+  }
 }
