@@ -1,5 +1,3 @@
-// const User = require('../models/sql/user.model'),
-
 const mysqldb = require("../../../config/sequelize");
 const User = mysqldb.User;
 const bcrypt = require("bcryptjs");
@@ -7,7 +5,6 @@ const salt = bcrypt.genSaltSync(10);
 const logger = require("../../utils/logger");
 const randomstring = require("randomstring");
 const model = "[user.model]";
-// const uploadfile = require('./../../utils/uploadFiles')
 
 
 exports.createUser = async query => {
@@ -20,6 +17,19 @@ exports.createUser = async query => {
     return false;
   }
 };
+
+
+exports.getAllUsers = async query => {
+  const methodName = "[getAllUsers]";
+  try {
+    let getUsers = await User.findAll({raw: true});
+    console.log('user===', getUsers)
+    return getUsers
+  }catch (error) {
+    logger.error(model, methodName, error);
+    return false;
+  }
+}
 
 
 

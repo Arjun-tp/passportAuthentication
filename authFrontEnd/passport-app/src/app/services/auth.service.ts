@@ -10,14 +10,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   loginUrl = environment.apiURL + "/auth/login";
+  getUsersUrl = environment.apiURL + "/auth/getAllUsers";
+
 
 
   logout() {
     localStorage.clear();
   }
 
+  getAllUsers() {
+    return this.http.get(this.getUsersUrl)
+  }
+
   login(body) {
-    console.log('body===============', body)
     return this.http.post(this.loginUrl, body);
   }
 

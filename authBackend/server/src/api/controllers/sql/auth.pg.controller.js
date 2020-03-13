@@ -6,12 +6,10 @@ const jwt = require("jsonwebtoken");
 const mysqldb = require("../../../config/sequelize");
 const User = mysqldb.User;
 const controller = "[auth.pg.controller]";
-/* Model included */
 const authService = require("../../services/sql/auth.service");
  JWT = require("passport-jwt");
 const JwtStrategy = require('passport-jwt').Strategy
 var passport = require('passport');
-
 let options = {
   jwtFromRequest: JWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: "secret@123",
@@ -45,6 +43,18 @@ exports.addAdmin = async (req, res, next) => {
   }
 };
 
+exports.getAllUsers = async (req, res, next) => {
+  const methodName = "[getAllUsers]";
+  try{
+    let getUsers = await authService.getAllUsers()
+    if(getUsers) {
+      res.json(getUsers)
+    }
+  }catch(error) {
+    logger.error(controller, methodName, error);
+    return error;
+  }
+}
 
 exports.addUser = async (req, res, next) => { //add dummy user to db
   const methodName = "[addUser]";
@@ -53,15 +63,9 @@ exports.addUser = async (req, res, next) => { //add dummy user to db
     if(addUser){
       res.json(addUser)
     }    
-    // let query = {
-    //   email: req.body.email,
-    //   phoneNumber: req.body.phoneNumber,
-    //   fullName: req.body.fullName,
-    //   gender: req.body.gender,
-    //   role: req.body.role
-    // }
   }catch (error) {
-
+    logger.error(controller, methodName, error);
+    return error;
   }
 }
 
@@ -91,7 +95,7 @@ exports.login = async (req, res, next) => {
     }
   } catch (error) {
     logger.error(controller, methodName, error);
-    return "Not Done";
+    return error;
   }
 };
 
