@@ -14,7 +14,6 @@ exports.createUser = async query => {
   const methodName = "[createUser]";
   try {
     query.password = bcrypt.hashSync(query.password, salt);
-    console.log('ssssssssssssss', query.password)
     return User.create(query)
   } catch (error) {
     logger.error(model, methodName, error);

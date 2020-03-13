@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../services/auth.service'
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service'
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -17,10 +17,10 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private authService: AuthService,
-              private toastr: ToastrService) {
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -37,25 +37,21 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log('**************************************', this.loginForm.value['email'])
-    console.log('**************************************', this.loginForm.value['password'])
-
     const query = {
       email: this.loginForm.value['email'],
       password: this.loginForm.value['password']
     }
-    console.log('**************************************', query)
-
     this.loading = true;
     this.authService.login(query)
       .subscribe(
         (data: any) => {
-          console.log('data===========', data)
-          if(data && data.token){
-            this.toastr.success('Login Unsuccessful!');
+          if (data && data.token) {
+            this.toastr.success('Login Successful!');
+            localStorage.setItem('token', data.token) //add token to localstorage
             this.router.navigate(['/home']);
-          }else {
+          } else {
             this.toastr.error('Login Unsuccessful!');
+            this.loading = false;
           }
         },
         error => {
