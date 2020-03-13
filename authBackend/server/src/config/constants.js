@@ -1,6 +1,7 @@
 module.exports = {
 
     gender: ['Male', 'Female', 'notToMention'],
+    roles: ['user', 'admin'],
     tokenType: 'Bearer',
     errorMessage: {
         SUCCESS: 'SUCCESS',

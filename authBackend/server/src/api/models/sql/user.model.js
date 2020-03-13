@@ -48,13 +48,16 @@ module.exports = function (sequelize, DataTypes) {
             trim: true,
             allowNull:true
         },
+        role: {
+            type: DataTypes.ENUM,
+            values: Enum.roles,
+            default: 'user'
+        }
     }, {
         indexes: [{
             unique: true,
             fields: ['email', 'phoneNo'],
         }],
     });
-
-
     return User;
 };
