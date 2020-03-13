@@ -1,7 +1,4 @@
-
-// const Enum = require('../../../util/enums');
 const Enum = require('../../../config/constants');
-const logger = require('../../utils/logger');
 
 module.exports = function (sequelize, DataTypes) {
     const Op = sequelize.Op;

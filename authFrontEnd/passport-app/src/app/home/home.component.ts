@@ -24,12 +24,12 @@ export class HomeComponent implements OnInit {
 
   addUser() {
     const queryParams = {
-      email: 'demo6@test.com',
-      password: 'demo6@test.com',
-      phoneNo: '8445557899',
-      role: 'admin',
+      email: 'demo9@test.com',
+      password: 'demo9@test.com',
+      phoneNo: '8442227899',
+      role: 'user',
       gender: 'male',
-      fullName: 'Alex'
+      fullName: 'Alexis'
     };
     this.authService.addUser(queryParams).subscribe((response) => {
       this.getAllUsers();

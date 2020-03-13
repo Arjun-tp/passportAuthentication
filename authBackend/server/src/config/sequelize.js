@@ -8,7 +8,7 @@ const lodash = require('lodash');
 
 const db = {};
 const {
-  mysql,
+    mysql,
 } = require('./vars');
 
 // Open sequelize connection

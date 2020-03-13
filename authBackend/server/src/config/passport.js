@@ -5,55 +5,45 @@ const JwtStrategy = require('passport-jwt').Strategy
 const mysqldb = require("../config/sequelize");
 const User = mysqldb.User;
 
-let { Strategy, ExtractJwt } = JWT;
+let {Strategy, ExtractJwt} = JWT;
 let options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: "secret@123",
-  passReqToCallback: true
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: "secret@123",
+    passReqToCallback: true
 };
-
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 // JWT Authentication Middleware
 module.exports = function jwtMiddleware(passport) {
-  passport.use(
-    new Strategy(options, async function(req, payload, done) {
-        console.log('payloads', payload)
-      /*let user = await User.findOne({
-        uuid: 'aaa'
-      });*/
-      /*if (user) {
-        req.user = payload;
-        done(null, payload);
-      } else {
-        done(null, false);
-      }*/
-    }), (token, done) => {
-        return done(null, token)
-      }
-  );
-}
+    passport.use(
+        new Strategy(options, async function (req, payload, done) {
+            console.log('payloads', payload)
+            /*let user = await User.findOne({
+              uuid: 'aaa'
+            });*/
+            /*if (user) {
+              req.user = payload;
+              done(null, payload);
+            } else {
+              done(null, false);
+            }*/
+        }), (token, done) => {
+            return done(null, token)
+        }
+    );
+};
 
 
-
-// const mysqldb = require("../config/sequelize");
-// const User = mysqldb.User;
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-
-// const Users = mongoose.model('Users');
-
 passport.use(new LocalStrategy({
-  usernameField: 'user[email]',
-  passwordField: 'user[password]',
+    usernameField: 'user[email]',
+    passwordField: 'user[password]',
 }, (email, password, done) => {
-  Users.findOne({ email })
-    .then((user) => {
-      if(!user) { //password mismatch
-        return done(null, false, { errors: { 'email or password': 'is invalid' } });
-      }
-
-      return done(null, user);
-    }).catch(done);
+    User.findOne({email: email})
+        .then((user) => {
+            if (!user) { //password mismatch
+                return done(null, false, {errors: {'email or password': 'is invalid'}});
+            }
+            return done(null, user);
+        }).catch(done);
 }));

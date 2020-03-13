@@ -13,7 +13,6 @@ require('dotenv-safe').load({
 module.exports = {
     env: process.env.NODE_ENV,
     port: process.env.PORT,
-    apiLink: `http://${process.env.BACKEND_HOST}:${process.env.PORT}`,
     basePath: '/api/v1',
     mysql: {
         uri: process.env.NODE_ENV === 'test'
@@ -26,7 +25,6 @@ module.exports = {
         enabled: process.env.MYSQL_ENABLED,
     },
     frontHost: process.env.FRONT_HOST,
-    adminHost: process.env.ADMIN_HOST,
     logs: process.env.NODE_ENV === 'production' ? 'combined' : 'dev',
 
 };
